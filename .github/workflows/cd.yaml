@@ -41,12 +41,6 @@ jobs:
           kubectl apply -f tekton/golang-run.yaml
           tkn task describe golang-run
 
-      - run: |
-          tkn pipeline start --showlog \
-            -f tekton/pipeline.yaml \
-            -p package=github.com/jerop/test-tkn \
-            -w name=workarea,volumeClaimTemplateFile=tekton/workspace.yaml \
+      - run: tkn tr ls
 
-      - run: tkn pipelinerun ls
-
-      - run: tkn pipelinerun describe -L
+      - run: tkn tr describe -L
